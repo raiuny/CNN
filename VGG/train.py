@@ -59,10 +59,10 @@ def main(model_name: str):
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size = 3, gamma=0.95, last_epoch=-1)
     save_path = './checkpoints/'
     mkdir(save_path)
-#     if os.path.exists('mylogs'):
-#         rmtree('mylogs')
-    trainwriter = SummaryWriter("../tf-logs/train")
-    testwriter = SummaryWriter("../tf-logs/test")
+    if os.path.exists('mylogs'):
+        rmtree('mylogs')
+    trainwriter = SummaryWriter("mylogs/train")
+    testwriter = SummaryWriter("mylogs/test")
     ### train epoch ##
     best_acc = 0.0
     for epoch in range(epochs):
