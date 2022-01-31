@@ -21,12 +21,12 @@ class AlexNet(nn.Module):
             nn.MaxPool2d(kernel_size=3, stride=2) # output  128x6x6                                                          
         )
         self.classifier = nn.Sequential(
+            nn.Dropout(), 
             nn.Linear(128 * 6 * 6, 2048),
             nn.ReLU(inplace=True),
             nn.Dropout(),
             nn.Linear(2048, 2048),
             nn.ReLU(inplace=True),
-            nn.Dropout(), 
             nn.Linear(2048, num_classes)
         )
         if init_weight:
